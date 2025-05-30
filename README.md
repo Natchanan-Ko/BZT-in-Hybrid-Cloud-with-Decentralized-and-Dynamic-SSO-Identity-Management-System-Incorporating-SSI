@@ -94,14 +94,14 @@ This schema must define fields such as:
 
 ### Connect cloud and Two authentication
 
-### Prepare Your Input File
+#### Prepare Your Input File
 
 After a successful VC verification using the Privado Query Builder, the user is redirected to a URL like:
 👉 [https://jwz-validator.privado.id/]
 - Create a JSON file consist of header, payload, auth proof by use comma separate.
 - You can refer to the sample file `inputnurse.json` provided in this repository.
 
-### 2️⃣ Run the Tool
+#### Run the Tool
 
 Open your terminal and run:
 
