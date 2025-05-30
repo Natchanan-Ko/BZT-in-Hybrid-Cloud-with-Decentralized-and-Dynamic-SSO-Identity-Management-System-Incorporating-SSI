@@ -5,9 +5,8 @@
 - Verifier VC
 - 2 Factor Authentication
 
-## 🏁 Getting Started
+## Prerequisites
 
-### Prerequisites
 #### Software Requirements
 
 - **[Node.js](https://nodejs.org/)** (v14 or above recommended)
@@ -23,6 +22,8 @@ Install project dependencies:
 ```bash
 npm install axios
 ```
+
+## Get start
 ### Issue and Verify VC on Chain
 #### Upload Schema (if not already published)
 
