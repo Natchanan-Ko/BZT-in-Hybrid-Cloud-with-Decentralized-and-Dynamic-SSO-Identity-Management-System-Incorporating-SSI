@@ -121,13 +121,13 @@ This project implements an authentication and access control system using AWS La
 | `resource.json` | Static file defining accessible resources and access levels. |
 |------|-------------|
 
-We redirect these 3 file3 by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract] (already wxisting in code)
+We redirect these 3 file3 by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract] (already existing in code)
 
 | File | Description |
 |------|-------------|
 | `lambdafunction_authen.py` | Authenticates user sessions by verifying OTP, password, and fingerprint data from an S3 `logs.json` file. |
 |------|-------------|
 
-We redirect this file by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen] (already wxisting in code)
+We redirect this file by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen] (already existing in code)
 
 ---
