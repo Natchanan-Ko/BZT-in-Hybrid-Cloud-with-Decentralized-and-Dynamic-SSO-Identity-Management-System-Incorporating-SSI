@@ -130,4 +130,112 @@ We redirect these 3 file3 by using 👉 [https://ugrw5apgfh.execute-api.ap-south
 
 We redirect this file by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen] (already existing in code)
 
+🔗 On-Chain Credential Context with Smart Contract
+After the Verifiable Credential (VC) is successfully verified using the Privado Verifier, the system performs an additional verification step by referencing a smart contract deployed on-chain.
+
+This contract contains the second-factor authentication context, which ensures the user has valid credentials beyond the VC, such as:
+
+Password
+OTP
+Fingerprint
+📄 Source Code
+
+Location: solidity/verify.sol
+This file defines the smart contract used for storing and retrieving the authentication context tied to a user’s LicenseNumber.
+
+🧠 When It’s Used
+
+Immediately after VC verification is complete, the system queries this smart contract using the LicenseNumber as the key. This confirms that the user has successfully completed multi-factor authentication (MFA) using verifiable, tamper-proof data stored on-chain.
+
+✅ Benefits
+
+Decentralized and immutable authentication record
+Enhanced security through separation of identity (VC) and authentication credentials
+No reliance on centralized backend databases
+🌐 Network and Deployment Info
+
+Blockchain: Polygon Amoy Testnet
+Smart Contract Address:
+👉 0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9
+🛡️ This second verification layer strengthens decentralized SSO by verifying both who the user is (via VC) and how they authenticate (via smart contract).
+
+🔗 On-Chain Credential Context with Smart Contract
+After the Verifiable Credential (VC) is successfully verified using the Privado Verifier, the system performs an additional verification step by referencing a smart contract deployed on-chain.
+
+This contract contains the 'second-factor authentication context', which ensures the user has valid credentials beyond the VC, such as:
+
+'Password'
+'OTP'
+'Fingerprint'
+📄 Source Code
+
+'Location': 'solidity/verify.sol'
+'Test Script': 'testverify.py'
+This smart contract is used to store and retrieve MFA values linked to a user's 'LicenseNumber'. The testverify.py script demonstrates how to interact with the contract (read fields, check values, etc.) using Python and Web3.py.
+
+🧠 When It’s Used
+
+Immediately after VC verification is complete, the system queries this smart contract using the 'LicenseNumber' as the key. This confirms that the user has successfully completed 'multi-factor authentication (MFA)' using verifiable, tamper-proof data stored on-chain.
+
+✅ Benefits
+
+'Decentralized and immutable' authentication record
+'Enhanced security' through separation of identity (VC) and authentication credentials
+'No reliance on centralized backend databases'
+🌐 Network and Deployment Info
+
+'Blockchain': Ethereum Sepolia Testnet
+'Smart Contract Address':
+👉 '0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9'
+🛡️ This second verification layer strengthens decentralized SSO by verifying both 'who the user is' (via VC) and 'how they authenticate' (via smart contract).
+🔐 Decentralized SSO Token Generation with Smart Contract
+After AWS Lambda successfully verifies 'two authentication factors' (password, OTP, fingerprint), the system proceeds to 'generate a Single Sign-On (SSO) token' using an on-chain smart contract. This ensures secure session management in a decentralized and privacy-preserving way.
+
+📄 Source Code
+
+'Location': 'solidity/ssogen.sol'
+'Test Script': 'ssogentest.py'
+This smart contract ('LicenseDataStore') is responsible for:
+
+Creating SSO tokens with encrypted session metadata
+Storing user roles, departments, and access levels securely
+Validating, revoking, and updating token metadata
+The ssogentest.py script demonstrates how to call generateSSOToken(), decrypt fields, and validate tokens using Web3.py from your Python environment.
+
+🧾 What the Contract Stores
+
+Each generated SSO token includes:
+
+'ssoTokenId' (plain text)
+Encrypted fields:
+DID
+License Number
+Department
+Role
+Accessible Resources
+Plaintext values:
+'userLevel' (used for access logic)
+'trustScore'
+'expirationDateTime'
+🧠 When It’s Used
+
+Immediately 'after successful 2FA verification' by the Lambda function
+The smart contract's 'generateSSOToken()' is called to issue a new token
+Any system that needs to validate user identity and trust can query this contract using the token ID
+✅ Key Features
+
+'XOR Encryption': Lightweight symmetric encryption for on-chain field protection
+'Resource-Level Access': Supports per-token access rights to specific resources
+'Token Lifecycle Management':
+'isValidSSOToken()' for live session checks
+'revokeSSOToken()' to immediately disable a session
+'updateExpirationDate()' for administrative extension
+🌐 Network and Deployment Info
+
+'Blockchain': Ethereum Sepolia Testnet
+'Smart Contract Address':
+👉 '0x23f7341535b33BDF2076778293Bc2d304d1c3134'
+'SSO Token Transactions':
+👉 'https://sepolia.etherscan.io/address/0x23f7341535b33BDF2076778293Bc2d304d1c3134'
+🔐 This mechanism finalizes the decentralized identity lifecycle: from 'VC issuance', through '2FA verification', to 'on-chain session tokenization'.
 ---
