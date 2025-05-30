@@ -107,4 +107,20 @@ Open your terminal and run:
 ```bash
 node testauthen.js inputnurse.json
 ```
+
+### 🛡️ Secure Resource Access via AWS Lambda
+
+This project implements an authentication and access control system using AWS Lambda, S3, and JSON-based policies.
+
+#### 📁 Project Structure
+
+| File | Description |
+|------|-------------|
+| `lambdafunction_1access.py` | Authorizes access to specific resources based on role and trust score. |
+| `accesspolicy.py` | Contains logic to enforce fine-grained access control policies. |
+| `resource.json` | Static file defining accessible resources and access levels. |
+We redirect these 3 file3 by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract] (already wxisting in code)
+| `lambdafunction_authen.py` | Authenticates user sessions by verifying OTP, password, and fingerprint data from an S3 `logs.json` file. |
+We redirect this file by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen] (already wxisting in code)
+
 ---
