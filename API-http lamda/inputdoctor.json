@@ -1,0 +1,287 @@
+[{
+    "alg": "groth16",
+    "circuitId": "authV2",
+    "crit": [
+        "circuitId"
+    ],
+    "typ": "application/iden3-zkp-json"
+},
+{
+    "id": "28d8a41a-3d30-4ae2-9e8e-8b78c7f73406",
+    "typ": "application/iden3-zkp-json",
+    "type": "https://iden3-communication.io/authorization/1.0/response",
+    "thid": "8ca21971-1093-4f90-af28-cb6d0a21aa61",
+    "body": {
+        "did_doc": {
+            "context": [
+                "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:iden3:privado:main:2ShQP2Jvc39auizk2dztEnytyKtGXyVE7wF5od3vKv",
+            "service": [
+                {
+                    "id": "did:iden3:privado:main:2ShQP2Jvc39auizk2dztEnytyKtGXyVE7wF5od3vKv#mobile",
+                    "type": "Iden3MobileServiceV1",
+                    "serviceEndpoint": "iden3comm:v0.1:callbackHandler"
+                },
+                {
+                    "id": "did:iden3:privado:main:2ShQP2Jvc39auizk2dztEnytyKtGXyVE7wF5od3vKv#push",
+                    "type": "push-notification",
+                    "serviceEndpoint": "https://notification-service.privado.id/api/v1",
+                    "metadata": {
+                        "devices": [
+                            {
+                                "ciphertext": "IaDSzK9j0GZYU+KFOaROC1XDT3BbeC+9t/1ci2o5AExynYX4/9mvOE2VopbOStUYAMQi+DVyTJF8mi3hr/TEd3UD1e0GjQNRVUcsCic8fdQAVL75dnRVl+85kTWbzOa9T8LH0O2YFcIMC+Qjv4114qi+bptugV/gEKDaCDkziIk325Eij8EB4fCV1P8HdB1OJDXg7QDZDPwPjivURks0Bu2NB4AG8+r/yNHLV/WTRgtckinggpeR86X3KOJH2fEi3D/jtQ5Em48hdikeU9Zu8s5/WJ6Q4Xs9SlXdZSA0XmLs9zvv8OOpm5zk6WWf9qgmbNJY+ZGOvAgO8zFHXcqyNrkfsm2eAkN0MtpnuWYsfPUq9aTzktGhikgrG1ABuvKKfCI4ddP1xt7ihGIRbp5pB0d/PJfbWUWuBcIFgWElPEcM0hETKOj/P0KvxwsTY0iKxYFB93gpzEgv8S70IM+SNTU1YhWBw0OmyY90gDVCGx/iFLpji9JRkr2M+3jCb8hlh3yI58AW0RTT3Cc8ENF/GgwgMgtqkTZN9DpZ2TQp971qtVcEIMF/z5NPv16KUHY0lXkUqMqqiJOFZceL2necqvAeyj6g9s/pgLxArsklLcDDKaq6wvs+4QOo6o1TyjV4jKQPu+U0NhFxQUutqQEamJXJ4/Ou82Ynw1pbAgUi7hA=",
+                                "alg": "RSA-OAEP-512"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "message": null,
+        "scope": [
+            {
+                "id": 1747307392,
+                "circuitId": "credentialAtomicQueryV3-beta.1",
+                "proof": {
+                    "pi_a": [
+                        "2190960964199469614216130530722024488472326353712579079317364204263260982822",
+                        "12467356694147084391322610070574629503802796561695765880581996571752207731966",
+                        "1"
+                    ],
+                    "pi_b": [
+                        [
+                            "15551505384510084303280500975240108110856806117006016419892375860428424552275",
+                            "10859860791371550473850602074469921031216584661119679921804263450796845311180"
+                        ],
+                        [
+                            "14835948918779335037781377076562367482549567915443963658917923203143611431315",
+                            "18546309145565823555461700343525293378723647460996838504874277955035689808133"
+                        ],
+                        [
+                            "1",
+                            "0"
+                        ]
+                    ],
+                    "pi_c": [
+                        "1757143182233277537373447802549641804944917757310154769414210549557674751407",
+                        "9395704389714548784292424012355081932849981156413065657833524542350951351156",
+                        "1"
+                    ],
+                    "protocol": "groth16"
+                },
+                "pub_signals": [
+                    "1",
+                    "24048449247294456316366511380356735710672869624721842876967928741974286593",
+                    "10453731262483222759832626040820497788103397006920409182554560132740087358493",
+                    "9538366767127830390132598455854627392579562679508203407596405682663223054199",
+                    "0",
+                    "331723648002132198917488286988169618501392231897177025674050148066799371823",
+                    "2",
+                    "1747307392",
+                    "23714900059385910009405023025973214750623338269794389475835046471302976257",
+                    "1",
+                    "10453731262483222759832626040820497788103397006920409182554560132740087358493",
+                    "1747031891",
+                    "195129619719708380796243963189170980145",
+                    "3614664810041219487607083720866715402806839798346199948700586851982406990925",
+                    "0",
+                    "16",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "26807661939269835776344740240444745116093891968214494061967074884031812353",
+                    "0"
+                ],
+                "publicStatesInfo": {
+                    "states": [
+                        {
+                            "id": "23714900059385910009405023025973214750623338269794389475835046471302976257",
+                            "state": "10453731262483222759832626040820497788103397006920409182554560132740087358493"
+                        }
+                    ],
+                    "gists": []
+                },
+                "vp": {
+                    "@type": "VerifiablePresentation",
+                    "@context": [
+                        "https://www.w3.org/2018/credentials/v1"
+                    ],
+                    "verifiableCredential": {
+                        "@context": [
+                            "https://www.w3.org/2018/credentials/v1",
+                            "ipfs://Qmcwtc3QMfZ8iThGZ5smxApMwf8SkWqLTAST7X5PNYxnWp"
+                        ],
+                        "@type": [
+                            "VerifiableCredential",
+                            "HospitalManageResources"
+                        ],
+                        "credentialSubject": {
+                            "@type": "HospitalManageResources",
+                            "LicenseNumber": "AA345678"
+                        }
+                    }
+                }
+            },
+            {
+                "id": 1747174739,
+                "circuitId": "linkedMultiQuery10-beta.1",
+                "proof": {
+                    "pi_a": [
+                        "8417063041035686465813653670719220338430107466811785252396584441536067086459",
+                        "21316107720281625619947811851191299960867412000753233985878031227602998491487",
+                        "1"
+                    ],
+                    "pi_b": [
+                        [
+                            "16623569929847946570378959102833449782708476773124901123530882831667725791215",
+                            "9837813631637362185783651776784956785198791307311664195369146252537670764612"
+                        ],
+                        [
+                            "6076958282548977760545742962276324918562730607855054366949975184795458944336",
+                            "1793263444674954311293270480496271813638216242603688739109986438434880902037"
+                        ],
+                        [
+                            "1",
+                            "0"
+                        ]
+                    ],
+                    "pi_c": [
+                        "2220737371560523280284757667116888666723385981112260683910499902005584772313",
+                        "2642631709076806144112868285598586103038797130104023412201880411671787520476",
+                        "1"
+                    ],
+                    "protocol": "groth16"
+                },
+                "pub_signals": [
+                    "9538366767127830390132598455854627392579562679508203407596405682663223054199",
+                    "1",
+                    "17492415670025996358695224255585344898195135263639553160671281171473034405345",
+                    "0",
+                    "7694060621068939091635056167231183944812619805585373380017432881446864200369",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "14906258954040716236643448632867345175476976625748190229922752615179601447190",
+                    "1771639224820519447481102635447840059220654635422609671058597283788497125282",
+                    "6997336981272830223283096132727988581404939061795857304193988112671913968091",
+                    "13785397596194970752994758586136461847880549999218630973121821898333146065323",
+                    "13785397596194970752994758586136461847880549999218630973121821898333146065323",
+                    "13785397596194970752994758586136461847880549999218630973121821898333146065323",
+                    "13785397596194970752994758586136461847880549999218630973121821898333146065323",
+                    "13785397596194970752994758586136461847880549999218630973121821898333146065323",
+                    "13785397596194970752994758586136461847880549999218630973121821898333146065323",
+                    "13785397596194970752994758586136461847880549999218630973121821898333146065323"
+                ],
+                "vp": {
+                    "@type": "VerifiablePresentation",
+                    "@context": [
+                        "https://www.w3.org/2018/credentials/v1"
+                    ],
+                    "verifiableCredential": {
+                        "@context": [
+                            "https://www.w3.org/2018/credentials/v1",
+                            "ipfs://Qmcwtc3QMfZ8iThGZ5smxApMwf8SkWqLTAST7X5PNYxnWp"
+                        ],
+                        "@type": [
+                            "VerifiableCredential",
+                            "HospitalManageResources"
+                        ],
+                        "credentialSubject": {
+                            "@type": "HospitalManageResources",
+                            "Department": "Surgery",
+                            "Role": "Doctor"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "from": "did:iden3:privado:main:2ShQP2Jvc39auizk2dztEnytyKtGXyVE7wF5od3vKv",
+    "to": "did:iden3:polygon:amoy:xCkXubP2T1zsUQpFLwczwfbWpdBYBxmJDtUTWAUCE"
+},
+{
+    "circuit_id": "authV2",
+    "is_valid": true,
+    "gist_state": {
+        "value": "0",
+        "blockchain_info": {
+            "is_latest": true,
+            "transition_info": {
+                "replaced_at_timestamp": "0",
+                "created_at_timestamp": "0",
+                "replaced_at_block": 0,
+                "created_at_block": 0,
+                "root": "0",
+                "replaced_by": "0"
+            }
+        }
+    },
+    "challenge": "24048449247294456316366511380356735710672869624721842876967928741974286593"
+}]
