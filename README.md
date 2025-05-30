@@ -22,6 +22,7 @@ Install project dependencies:
 
 ```bash
 npm install axios
+```
 
 ### Upload Schema (if not already published)
 
