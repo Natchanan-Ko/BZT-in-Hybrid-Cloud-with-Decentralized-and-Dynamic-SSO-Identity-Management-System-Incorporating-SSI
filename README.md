@@ -23,8 +23,8 @@ Install project dependencies:
 ```bash
 npm install axios
 ```
-
-### Upload Schema (if not already published)
+### Issue and Verify VC
+#### Upload Schema (if not already published)
 
 If your credential schema is not yet registered:
 
@@ -41,7 +41,7 @@ This schema must define fields such as:
 - `Department`
 - `Role`
 
-### Issue VC to User
+#### Issue VC to User
 
 - Open the **Issuer Portal**:
   👉 [https://issuer-demo.privado.id](https://issuer-demo.privado.id)
@@ -60,7 +60,7 @@ This schema must define fields such as:
 
 ---
 
-### Verify VC Using Query Builder
+#### Verify VC Using Query Builder
 
 - Open the **Privado VC Verifier**:
 👉 [https://tools.privado.id/query-builder/](https://tools.privado.id/query-builder/)
