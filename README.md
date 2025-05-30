@@ -75,7 +75,16 @@ This schema must define fields such as:
   - 🔐 **Proof Type**: `Signature-based (SIG)`
   - 🧪 **Query Type**: `Credential Atomic Query v3 (On Chain, experimental)`
 
-- Connect your network and smart contract address
+- Select Network and Contract To verify on-chain:
+
+- ✅ **Select Network**:
+  - `Polygon Amoy Testnet`
+
+- ✅ **Smart Contract Address**:
+0x2ef1c802355c500a3493f2db8cb9c24af12c42b0
+
+- 🔍 View this contract on OkLink:
+👉 [https://www.oklink.com/amoy/address/0x2ef1c802355c500a3493f2db8cb9c24af12c42b0](https://www.oklink.com/amoy/address/0x2ef1c802355c500a3493f2db8cb9c24af12c42b0)
 
 - Generate the QR code or verification link
 
