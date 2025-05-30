@@ -1,241 +1,324 @@
-# BZT-in-Hybrid-Cloud-with-Decentralized-and-Dynamic-SSO-Identity-Management-System-Incorporating-SSI
+# BZT in Hybrid Cloud with Decentralized and Dynamic SSO Identity Management System Incorporating SSI
+
 ## Features
 
-- Issuer VC
-- Verifier VC
-- 2 Factor Authentication
+> - Issuer VC  
+> - Verifier VC  
+> - 2 Factor Authentication  
 
 ## Prerequisites
 
-#### Software Requirements
+### Software Requirements
 
-- **[Node.js](https://nodejs.org/)** (v14 or above recommended)
-- **npm** (comes with Node.js)
-- **cURL** installed (used via `child_process.spawn`)
-  - macOS / Linux: usually preinstalled
-  - Windows: [https://curl.se/windows/](https://curl.se/windows/)
+> - [Node.js](https://nodejs.org/) (v14 or above recommended)  
+> - npm (comes with Node.js)  
+> - cURL installed (used via `child_process.spawn`)  
+>   - macOS / Linux: usually preinstalled  
+>   - Windows: [https://curl.se/windows/](https://curl.se/windows/)  
 
-#### Node.js Packages
-
-Install project dependencies:
+### Node.js Packages
 
 ```bash
 npm install axios
 ```
 
-## Get start
+## Getting Started
+
 ### Issue and Verify VC on Chain
+
 #### Upload Schema (if not already published)
 
-If your credential schema is not yet registered:
+> - Go to the **Privado Issuer Schema Dashboard**  
+>   👉 [Schema Dashboard](https://issuer-demo.privado.id/schemas?identifier=did%3Aiden3%3Apolygon%3Aamoy%3Ax7UPbuoupPoHo6v69MejJp17We3xNskZjijEsBFFS)
 
-- Go to the **Privado Issuer Schema Dashboard**:
-  👉 [https://issuer-demo.privado.id/schemas?identifier=did%3Aiden3%3Apolygon%3Aamoy%3Ax7UPbuoupPoHo6v69MejJp17We3xNskZjijEsBFFS](https://issuer-demo.privado.id/schemas?identifier=did%3Aiden3%3Apolygon%3Aamoy%3Ax7UPbuoupPoHo6v69MejJp17We3xNskZjijEsBFFS)
-
-- Use the following schema reference hosted on IPFS:
-
-
-This schema must define fields such as:
-- `Name`
-- `Surname`
-- `LicenseNumber`
-- `Department`
-- `Role`
+> - Use the following schema reference hosted on IPFS defining:
+>   - `Name`
+>   - `Surname`
+>   - `LicenseNumber`
+>   - `Department`
+>   - `Role`
 
 #### Issue VC to User
 
-- Open the **Issuer Portal**:
-  👉 [https://issuer-demo.privado.id](https://issuer-demo.privado.id)
+> - Open the **Issuer Portal**  
+>   👉 [https://issuer-demo.privado.id](https://issuer-demo.privado.id)  
+> - Select the uploaded schema  
+> - Enter credential values  
+> - Choose recipient DID (e.g., via mobile wallet)  
+> - Deliver via:
+>   - QR Code (Privado Wallet)  
+>   - Shareable Link  
 
-- Select the uploaded schema from step 1
-
-- Input the credential values
-
-- Choose the **recipient DID** (e.g., from a mobile wallet)
-
-- Deliver the VC to the user via:
-- 🔳 **QR Code** – scan using the **Privado Wallet**
-- 🔗 **Shareable link** – user can open directly in their wallet
-
-> 🧠 The user now has a signed VC stored in their privacy-preserving wallet.
+> 🧠 The user now holds a signed VC in a privacy-preserving wallet.
 
 #### Verify VC Using Query Builder
 
-- Open the **Privado VC Verifier**:
-👉 [https://tools.privado.id/query-builder/](https://tools.privado.id/query-builder/)
+> - Open the **Privado VC Verifier**  
+>   👉 [https://tools.privado.id/query-builder/](https://tools.privado.id/query-builder/)  
+> - Paste your schema reference  
 
-- Paste the following schema reference to match the issued VC:
+> - Set Verification Parameters:
+>   - ✅ Selective Disclosure:
+>     - `LicenseNumber`, `Department`, `Role`  
+>   - 🔐 Proof Type: `Signature-based (SIG)`  
+>   - 🧪 Query Type: `Credential Atomic Query v3 (On Chain, experimental)`  
 
-- Set your verification parameters:
-  - ✅ Selective disclosure fields:
-    - `LicenseNumber`
-    - `Department`
-    - `Role`
-  - 🔐 **Proof Type**: `Signature-based (SIG)`
-  - 🧪 **Query Type**: `Credential Atomic Query v3 (On Chain, experimental)`
+> - Select Network:
+>   - Polygon Amoy Testnet  
 
-- Select Network and Contract To verify on-chain:
+> - Smart Contract:  
+>   👉 [0x2ef1c802355c500a3493f2db8cb9c24af12c42b0](https://www.oklink.com/amoy/address/0x2ef1c802355c500a3493f2db8cb9c24af12c42b0)  
 
-- ✅ **Select Network**:
-  - `Polygon Amoy Testnet`
+> - Generate verification QR code or link  
+> - Ask the user to scan or open with **Privado Wallet**  
 
-- ✅ **Smart Contract Address**:
-0x2ef1c802355c500a3493f2db8cb9c24af12c42b0
+> 📬 Wallet reveals only selected fields; verifier checks ZKP proof.
 
-- 🔍 View this contract on OkLink:
-👉 [https://www.oklink.com/amoy/address/0x2ef1c802355c500a3493f2db8cb9c24af12c42b0](https://www.oklink.com/amoy/address/0x2ef1c802355c500a3493f2db8cb9c24af12c42b0)
+---
 
-- Generate the QR code or verification link
+## Connect Cloud and Perform Two-Factor Authentication
 
-- Ask the user to scan with their **Privado Wallet app** or open the link
+### Prepare Input File
 
-> 📬 The wallet will present the VC with only the selected fields revealed, and the verifier will validate it against the ZKP proof.
+> After VC verification, user is redirected to:  
+> 👉 [https://jwz-validator.privado.id/](https://jwz-validator.privado.id/)  
 
-### Connect cloud and Two authentication
+> - Create a JSON file like `inputnurse.json` with:
+>   - Header  
+>   - Payload  
+>   - Auth Proof (comma-separated)  
 
-#### Prepare Your Input File
-
-After a successful VC verification using the Privado Query Builder, the user is redirected to a URL like:
-👉 [https://jwz-validator.privado.id/]
-- Create a JSON file consist of header, payload, auth proof by use comma separate.
-- You can refer to the sample file `inputnurse.json` provided in this repository.
-
-#### Run the Tool
-
-Open your terminal and run:
+### Run Authentication Script
 
 ```bash
 node testauthen.js inputnurse.json
 ```
 
-### 🛡️ Secure Resource Access via AWS Lambda
-
-This project implements an authentication and access control system using AWS Lambda, S3, and JSON-based policies.
-
-#### 📁 Project Structure
-
-| File | Description |
-|------|-------------|
-| `lambdafunction_1access.py` | Authorizes access to specific resources based on role and trust score. |
-| `accesspolicy.py` | Contains logic to enforce fine-grained access control policies. |
-| `resource.json` | Static file defining accessible resources and access levels. |
-|------|-------------|
-
-We redirect these 3 file3 by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract] (already existing in code)
-
-| File | Description |
-|------|-------------|
-| `lambdafunction_authen.py` | Authenticates user sessions by verifying OTP, password, and fingerprint data from an S3 `logs.json` file. |
-|------|-------------|
-
-We redirect this file by using 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen] (already existing in code)
-
-🔗 On-Chain Credential Context with Smart Contract
-After the Verifiable Credential (VC) is successfully verified using the Privado Verifier, the system performs an additional verification step by referencing a smart contract deployed on-chain.
-
-This contract contains the second-factor authentication context, which ensures the user has valid credentials beyond the VC, such as:
-
-Password
-OTP
-Fingerprint
-📄 Source Code
-
-Location: solidity/verify.sol
-This file defines the smart contract used for storing and retrieving the authentication context tied to a user’s LicenseNumber.
-
-🧠 When It’s Used
-
-Immediately after VC verification is complete, the system queries this smart contract using the LicenseNumber as the key. This confirms that the user has successfully completed multi-factor authentication (MFA) using verifiable, tamper-proof data stored on-chain.
-
-✅ Benefits
-
-Decentralized and immutable authentication record
-Enhanced security through separation of identity (VC) and authentication credentials
-No reliance on centralized backend databases
-🌐 Network and Deployment Info
-
-Blockchain: Polygon Amoy Testnet
-Smart Contract Address:
-👉 0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9
-🛡️ This second verification layer strengthens decentralized SSO by verifying both who the user is (via VC) and how they authenticate (via smart contract).
-
-🔗 On-Chain Credential Context with Smart Contract
-After the Verifiable Credential (VC) is successfully verified using the Privado Verifier, the system performs an additional verification step by referencing a smart contract deployed on-chain.
-
-This contract contains the 'second-factor authentication context', which ensures the user has valid credentials beyond the VC, such as:
-
-'Password'
-'OTP'
-'Fingerprint'
-📄 Source Code
-
-'Location': 'solidity/verify.sol'
-'Test Script': 'testverify.py'
-This smart contract is used to store and retrieve MFA values linked to a user's 'LicenseNumber'. The testverify.py script demonstrates how to interact with the contract (read fields, check values, etc.) using Python and Web3.py.
-
-🧠 When It’s Used
-
-Immediately after VC verification is complete, the system queries this smart contract using the 'LicenseNumber' as the key. This confirms that the user has successfully completed 'multi-factor authentication (MFA)' using verifiable, tamper-proof data stored on-chain.
-
-✅ Benefits
-
-'Decentralized and immutable' authentication record
-'Enhanced security' through separation of identity (VC) and authentication credentials
-'No reliance on centralized backend databases'
-🌐 Network and Deployment Info
-
-'Blockchain': Ethereum Sepolia Testnet
-'Smart Contract Address':
-👉 '0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9'
-🛡️ This second verification layer strengthens decentralized SSO by verifying both 'who the user is' (via VC) and 'how they authenticate' (via smart contract).
-🔐 Decentralized SSO Token Generation with Smart Contract
-After AWS Lambda successfully verifies 'two authentication factors' (password, OTP, fingerprint), the system proceeds to 'generate a Single Sign-On (SSO) token' using an on-chain smart contract. This ensures secure session management in a decentralized and privacy-preserving way.
-
-📄 Source Code
-
-'Location': 'solidity/ssogen.sol'
-'Test Script': 'ssogentest.py'
-This smart contract ('LicenseDataStore') is responsible for:
-
-Creating SSO tokens with encrypted session metadata
-Storing user roles, departments, and access levels securely
-Validating, revoking, and updating token metadata
-The ssogentest.py script demonstrates how to call generateSSOToken(), decrypt fields, and validate tokens using Web3.py from your Python environment.
-
-🧾 What the Contract Stores
-
-Each generated SSO token includes:
-
-'ssoTokenId' (plain text)
-Encrypted fields:
-DID
-License Number
-Department
-Role
-Accessible Resources
-Plaintext values:
-'userLevel' (used for access logic)
-'trustScore'
-'expirationDateTime'
-🧠 When It’s Used
-
-Immediately 'after successful 2FA verification' by the Lambda function
-The smart contract's 'generateSSOToken()' is called to issue a new token
-Any system that needs to validate user identity and trust can query this contract using the token ID
-✅ Key Features
-
-'XOR Encryption': Lightweight symmetric encryption for on-chain field protection
-'Resource-Level Access': Supports per-token access rights to specific resources
-'Token Lifecycle Management':
-'isValidSSOToken()' for live session checks
-'revokeSSOToken()' to immediately disable a session
-'updateExpirationDate()' for administrative extension
-🌐 Network and Deployment Info
-
-'Blockchain': Ethereum Sepolia Testnet
-'Smart Contract Address':
-👉 '0x23f7341535b33BDF2076778293Bc2d304d1c3134'
-'SSO Token Transactions':
-👉 'https://sepolia.etherscan.io/address/0x23f7341535b33BDF2076778293Bc2d304d1c3134'
-🔐 This mechanism finalizes the decentralized identity lifecycle: from 'VC issuance', through '2FA verification', to 'on-chain session tokenization'.
 ---
+
+## 🛡️ Secure Resource Access via AWS Lambda
+
+### Project Files
+
+```text
+| File                     | Description                                                                |
+|--------------------------|----------------------------------------------------------------------------|
+| lambdafunction_1access.py | Authorizes access to specific resources based on role/trust score          |
+| accesspolicy.py          | Enforces fine-grained access control policies                              |
+| resource.json            | Defines accessible resources and levels                                    |
+```
+
+> 🔗 API Gateway:  
+> 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract](https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract)
+
+```text
+| File                     | Description                                                       |
+|--------------------------|-------------------------------------------------------------------|
+| lambdafunction_authen.py | Verifies OTP, password, fingerprint from logs.json in S3           |
+```
+
+> 🔗 API Gateway:  
+> 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen](https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen)
+
+---
+
+## 🔗 On-Chain Credential Context with Smart Contract
+
+> After VC verification, the system references a smart contract storing second-factor authentication context.
+
+### Second-Factor Credential Types
+
+> - Password  
+> - OTP  
+> - Fingerprint  
+# BZT in Hybrid Cloud with Decentralized and Dynamic SSO Identity Management System Incorporating SSI
+
+## Features
+
+> - Issuer VC  
+> - Verifier VC  
+> - 2 Factor Authentication  
+
+## Prerequisites
+
+### Software Requirements
+
+> - [Node.js](https://nodejs.org/) (v14 or above recommended)  
+> - npm (comes with Node.js)  
+> - cURL installed (used via `child_process.spawn`)  
+>   - macOS / Linux: usually preinstalled  
+>   - Windows: [https://curl.se/windows/](https://curl.se/windows/)  
+
+### Node.js Packages
+
+```bash
+npm install axios
+```
+
+## Getting Started
+
+### Issue and Verify VC on Chain
+
+#### Upload Schema (if not already published)
+
+> - Go to the **Privado Issuer Schema Dashboard**  
+>   👉 [Schema Dashboard](https://issuer-demo.privado.id/schemas?identifier=did%3Aiden3%3Apolygon%3Aamoy%3Ax7UPbuoupPoHo6v69MejJp17We3xNskZjijEsBFFS)
+
+> - Use the following schema reference hosted on IPFS defining:
+>   - `Name`
+>   - `Surname`
+>   - `LicenseNumber`
+>   - `Department`
+>   - `Role`
+
+#### Issue VC to User
+
+> - Open the **Issuer Portal**  
+>   👉 [https://issuer-demo.privado.id](https://issuer-demo.privado.id)  
+> - Select the uploaded schema  
+> - Enter credential values  
+> - Choose recipient DID (e.g., via mobile wallet)  
+> - Deliver via:
+>   - QR Code (Privado Wallet)  
+>   - Shareable Link  
+
+> 🧠 The user now holds a signed VC in a privacy-preserving wallet.
+
+#### Verify VC Using Query Builder
+
+> - Open the **Privado VC Verifier**  
+>   👉 [https://tools.privado.id/query-builder/](https://tools.privado.id/query-builder/)  
+> - Paste your schema reference  
+
+> - Set Verification Parameters:
+>   - ✅ Selective Disclosure:
+>     - `LicenseNumber`, `Department`, `Role`  
+>   - 🔐 Proof Type: `Signature-based (SIG)`  
+>   - 🧪 Query Type: `Credential Atomic Query v3 (On Chain, experimental)`  
+
+> - Select Network:
+>   - Polygon Amoy Testnet  
+
+> - Smart Contract:  
+>   👉 [0x2ef1c802355c500a3493f2db8cb9c24af12c42b0](https://www.oklink.com/amoy/address/0x2ef1c802355c500a3493f2db8cb9c24af12c42b0)  
+
+> - Generate verification QR code or link  
+> - Ask the user to scan or open with **Privado Wallet**  
+
+> 📬 Wallet reveals only selected fields; verifier checks ZKP proof.
+
+---
+
+## Connect Cloud and Perform Two-Factor Authentication
+
+### Prepare Input File
+
+> After VC verification, user is redirected to:  
+> 👉 [https://jwz-validator.privado.id/](https://jwz-validator.privado.id/)  
+
+> - Create a JSON file like `inputnurse.json` with:
+>   - Header  
+>   - Payload  
+>   - Auth Proof (comma-separated)  
+
+### Run Authentication Script
+
+```bash
+node testauthen.js inputnurse.json
+```
+
+---
+
+## 🛡️ Secure Resource Access via AWS Lambda
+
+### Project Files
+
+```text
+| File                     | Description                                                                |
+|--------------------------|----------------------------------------------------------------------------|
+| lambdafunction_1access.py | Authorizes access to specific resources based on role/trust score          |
+| accesspolicy.py          | Enforces fine-grained access control policies                              |
+| resource.json            | Defines accessible resources and levels                                    |
+```
+
+> 🔗 API Gateway:  
+> 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract](https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/extract)
+
+```text
+| File                     | Description                                                       |
+|--------------------------|-------------------------------------------------------------------|
+| lambdafunction_authen.py | Verifies OTP, password, fingerprint from logs.json in S3           |
+```
+
+> 🔗 API Gateway:  
+> 👉 [https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen](https://ugrw5apgfh.execute-api.ap-southeast-2.amazonaws.com/verifyauthen)
+
+---
+
+## 🔗 On-Chain Credential Context with Smart Contract
+
+> After VC verification, the system references a smart contract storing second-factor authentication context.
+
+### Second-Factor Credential Types
+
+> - Password  
+> - OTP  
+> - Fingerprint  
+
+### Smart Contract Info
+
+> - **Source Code**: `solidity/verify.sol`  
+> - **Blockchain**: Polygon Amoy Testnet  
+> - **Address**:  
+>   👉 [0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9](https://www.oklink.com/amoy/address/0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9)
+
+> 🧠 Used immediately post-VC verification to validate MFA via `LicenseNumber`.
+
+### Benefits
+
+> - ✅ Decentralized & immutable authentication  
+> - ✅ Enhanced security via VC + MFA separation  
+> - ✅ No centralized backend dependency  
+
+---
+
+## 🔐 Decentralized SSO Token Generation with Smart Contract
+
+> After Lambda confirms 2FA, the smart contract generates a session token for secure access.
+
+### Contract Info
+
+> - **Source Code**: `solidity/ssogen.sol`  
+> - **Test Script**: `ssogentest.py`  
+> - **Blockchain**: Ethereum Sepolia  
+> - **Contract Address**:  
+>   👉 [0x23f7341535b33BDF2076778293Bc2d304d1c3134](https://sepolia.etherscan.io/address/0x23f7341535b33BDF2076778293Bc2d304d1c3134)
+
+### What It Stores
+
+> - `ssoTokenId` (plaintext)  
+> - XOR Encrypted Fields:
+>   - DID  
+>   - License Number  
+>   - Department  
+>   - Role  
+>   - Accessible Resources  
+> - Plaintext:
+>   - `userLevel`  
+>   - `trustScore`  
+>   - `expirationDateTime`  
+
+### Token Lifecycle Functions
+
+> - `generateSSOToken()`  
+> - `isValidSSOToken()`  
+> - `revokeSSOToken()`  
+> - `updateExpirationDate()`  
+
+> 🛡️ Finalizes decentralized identity lifecycle: VC → 2FA → On-chain token
+
+---
+
+## License
+
+> SIIT
