@@ -58,8 +58,6 @@ This schema must define fields such as:
 
 > 🧠 The user now has a signed VC stored in their privacy-preserving wallet.
 
----
-
 #### Verify VC Using Query Builder
 
 - Open the **Privado VC Verifier**:
