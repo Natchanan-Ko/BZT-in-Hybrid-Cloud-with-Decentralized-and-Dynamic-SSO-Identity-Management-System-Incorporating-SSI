@@ -268,9 +268,9 @@ node testauthen.js inputnurse.json
 ### Smart Contract Info
 
 > - **Source Code**: `solidity/verify.sol`  
-> - **Blockchain**: Polygon Amoy Testnet  
+> - **Blockchain**: Ethereum Sepolia
 > - **Address**:  
->   👉 [0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9](https://www.oklink.com/amoy/address/0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9)
+>   👉 [0xcaddB760BE8C70d773D8F361607Cb3f3c8094db9]
 
 > 🧠 Used immediately post-VC verification to validate MFA via `LicenseNumber`.
 
