@@ -10,11 +10,59 @@ PRIVATE_KEY = os.getenv("PRIVATE_KEY") # Or hardcode for local testing (not reco
 # PRIVATE_KEY = "0x..."  # ⚠️ For local testing only
 
 ALCHEMY_URL = "https://eth-sepolia.g.alchemy.com/v2/BzOut2aj1tiT-J63nHeO9_iZPHjwKz9x"
-CONTRACT_ADDRESS = "0x10fAeC32c089897f21B85e874BbC74625119e202"
+CONTRACT_ADDRESS = "0x23f7341535b33BDF2076778293Bc2d304d1c3134"
 
 ABI_JSON = """[
 	{
 		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_ssoTokenId",
+				"type": "string"
+			}
+		],
+		"name": "decryptAllResources",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_ssoTokenId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "field",
+				"type": "string"
+			}
+		],
+		"name": "decryptField",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_did",
+				"type": "string"
+			},
 			{
 				"internalType": "string",
 				"name": "_licenseNumber",
@@ -52,95 +100,6 @@ ABI_JSON = """[
 			}
 		],
 		"name": "generateSSOToken",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "ssoTokenId",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "licenseNumber",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "department",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "role",
-						"type": "string"
-					},
-					{
-						"internalType": "uint8",
-						"name": "userLevel",
-						"type": "uint8"
-					},
-					{
-						"internalType": "uint256",
-						"name": "trustScore",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "expirationDateTime",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string[]",
-						"name": "accessibleResources",
-						"type": "string[]"
-					}
-				],
-				"internalType": "struct LicenseDataStore.SSO",
-				"name": "",
-				"type": "tuple"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_ssoTokenId",
-				"type": "string"
-			}
-		],
-		"name": "revokeSSOToken",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_ssoTokenId",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_day",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_month",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_year",
-				"type": "uint256"
-			}
-		],
-		"name": "updateExpirationDate",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -168,24 +127,13 @@ ABI_JSON = """[
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "licenseToTokenIds",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
+				"name": "_ssoTokenId",
 				"type": "string"
 			}
 		],
-		"stateMutability": "view",
+		"name": "revokeSSOToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -204,19 +152,24 @@ ABI_JSON = """[
 				"type": "string"
 			},
 			{
-				"internalType": "string",
-				"name": "licenseNumber",
-				"type": "string"
+				"internalType": "bytes",
+				"name": "encryptedDID",
+				"type": "bytes"
 			},
 			{
-				"internalType": "string",
-				"name": "department",
-				"type": "string"
+				"internalType": "bytes",
+				"name": "encryptedLicenseNumber",
+				"type": "bytes"
 			},
 			{
-				"internalType": "string",
-				"name": "role",
-				"type": "string"
+				"internalType": "bytes",
+				"name": "encryptedDepartment",
+				"type": "bytes"
+			},
+			{
+				"internalType": "bytes",
+				"name": "encryptedRole",
+				"type": "bytes"
 			},
 			{
 				"internalType": "uint8",
@@ -249,6 +202,34 @@ ABI_JSON = """[
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_ssoTokenId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_day",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_month",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_year",
+				"type": "uint256"
+			}
+		],
+		"name": "updateExpirationDate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
 ]"""  # Replace with full ABI JSON string
 ABI = json.loads(ABI_JSON)
@@ -263,7 +244,6 @@ print("✅ Connected to Ethereum network.")
 acct = w3.eth.account.from_key(PRIVATE_KEY)
 contract = w3.eth.contract(address=CONTRACT_ADDRESS, abi=ABI)
 
-# ========== Timer Decorator ==========
 def timer(func):
     def wrapper(*args, **kwargs):
         start = time.time()
@@ -272,20 +252,18 @@ def timer(func):
         return result
     return wrapper
 
-# ========== Functions ==========
-
 @timer
-def generate_sso_token(license_number, department, role, user_level, trust_score, expiration_datetime, resources):
+def generate_sso_token(did, license_number, department, role, user_level, trust_score, expiration_datetime, resources):
     try:
         nonce = w3.eth.get_transaction_count(acct.address, "pending")
         gas_price = w3.to_wei('12', 'gwei')
 
         tx = contract.functions.generateSSOToken(
-            license_number, department, role, user_level, trust_score, expiration_datetime, resources
+            did, license_number, department, role, user_level, trust_score, expiration_datetime, resources
         ).build_transaction({
             'from': acct.address,
             'nonce': nonce,
-            'gas': 300000,
+            'gas': 500000,
             'gasPrice': gas_price
         })
 
@@ -304,7 +282,7 @@ def generate_sso_token(license_number, department, role, user_level, trust_score
 def get_latest_token_id():
     try:
         counter = contract.functions.tokenCounter().call()
-        if counter == 1:
+        if counter == 0:
             print("⚠️ No tokens created yet.")
             return None
         return f"SSO-{counter - 1}"
@@ -338,9 +316,8 @@ def revoke_sso_token(token_id):
     except Exception as e:
         print(f"❌ Error revoking token: {e}")
 
-# ========== Main ==========
 if __name__ == "__main__":
-    generate_sso_token("XY88512", "Finance", "Analyst", 1, 40, 1805000000, ["Budget", "Invoices"])
+    generate_sso_token("did:example:123456", "XY88512", "Finance", "Analyst", 1, 40, 1805000000, ["Budget", "Invoices"])
 
     token_id = get_latest_token_id()
     if token_id:
