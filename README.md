@@ -289,7 +289,7 @@ node testauthen.js inputnurse.json
 ### Contract Info
 
 > - **Source Code**: `solidity/ssogen.sol`  
-> - **Test Script**: `ssogentest.py`  
+> - **Test Script**: `ssogentest.py (add PRIVKEY before testing)`  
 > - **Blockchain**: Ethereum Sepolia  
 > - **Contract Address**:  
 >   👉 [0x23f7341535b33BDF2076778293Bc2d304d1c3134](https://sepolia.etherscan.io/address/0x23f7341535b33BDF2076778293Bc2d304d1c3134)
