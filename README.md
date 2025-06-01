@@ -4,7 +4,7 @@
 
 > - Issuer VC  
 > - Verifier VC  
-> - 2 Factor Authentication  
+> - 2 Factors Authentication  
 
 ## Prerequisites
 
