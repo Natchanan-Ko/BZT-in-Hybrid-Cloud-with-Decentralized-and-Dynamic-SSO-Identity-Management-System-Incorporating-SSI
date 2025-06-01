@@ -202,5 +202,5 @@ node testauthen.js inputnurse.json
 
 ## License
 
-> SIIT
+> Sirindhorn International Institute of Technology, Thammasat University
 
