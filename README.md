@@ -5,6 +5,10 @@
 > - Issuer VC  
 > - Verifier VC  
 > - 2 Factors Authentication  
+> - On-chain Credential Verification (ZKP-based)  
+> - Smart Contract for MFA Credential Context  
+> - Smart Contract-based SSO Token Generation  
+> - Decentralized Identity and Authentication Lifecycle  
 
 ## Prerequisites
 
@@ -15,11 +19,21 @@
 > - cURL installed (used via `child_process.spawn`)  
 >   - macOS / Linux: usually preinstalled  
 >   - Windows: [https://curl.se/windows/](https://curl.se/windows/)  
+> - Ethereum-compatible wallet (e.g., Metamask or Privado Wallet)  
+> - Access to Polygon Amoy Testnet and Ethereum Sepolia Testnet  
+> - [Remix IDE](https://remix.ethereum.org/) (for deploying/testing Smart Contracts)  
+> - [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/) for Sepolia RPC endpoint  
 
 ### Node.js Packages
 
 ```bash
 npm install axios
+```
+
+### Python Requirements (for smart contract interaction)
+
+```bash
+pip install web3
 ```
 
 ## Getting Started
