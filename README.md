@@ -76,7 +76,7 @@ npm install axios
 
 ---
 
-## Connect Cloud and Perform Two-Factor Authentication
+## Connect Cloud and Perform Two-Factors Authentication
 
 ### Prepare Input File
 
